@@ -41,9 +41,14 @@ let quotes = [
   {
     quote:'The greatest thing is when you do put your heart and soul into something over an extended period of time, and it is worth it.',
     source:'Steve Jobs'
+  },
+  {
+    quote:'Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.',
+    source:'Albert Einstein',
+    citation:'The Saturday Evening Post',
+    year:1929
   }
 ];
-
 
 /***
   Create the `getRandomQuote` function to:
@@ -70,9 +75,19 @@ function getRandomQuote(arr) {
 ***/
 
 function printQuote() {
-
+  let quote = getRandomQuote(quotes);
+  let message = '';
+  message += '<p class="quote">' + quote.quote + '</p>';
+  message += '<p class="source">' + quote.source;
+  if(quote.citation) {
+    message += '<span class="citation">' + quote.citation + '</span>';
+  } 
+  if(quote.year) {
+    message += '<span class="year">' + quote.year + '</span>';
+  }
+  message += '</p>';
+  document.getElementById("quote-box").innerHTML = message;
 };
-
 
 /***
   When the "Show another quote" button is clicked, the event listener 
@@ -82,6 +97,5 @@ function printQuote() {
 ***/
 
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
