@@ -6,13 +6,10 @@ project 1 - A Random Quote Generator
 // Study guide for this project - https://drive.google.com/file/d/1s5grutGuQFwJcQP8bFwEI69Q8FCkGdDk/view?usp=sharing
 
 
+
 /*** 
-  Create the array of quote objects and name it `quotes`.
-  Add at least five quote objects to the `quotes` array.
-  Give each quote object a `quote` and `source` property.
-  Add the `citation` property to at least one object in the array.
-  Add the `year` property to at least one object in the array.
-  Use console.log() to log your array of quotes to the console.
+This is an array of objects. Each object has two mandatory properties: Quote and Source.
+Extra proprities (citation, year and category) were added when available.
 ***/
 
 let quotes = [
@@ -56,10 +53,12 @@ let quotes = [
   }
 ];
 
+
 /***
-  Create the `getRandomQuote` function to:
-   - Create a variable to store a random number 
-   - Cse the random number to `return` a random quote object from the `quotes` array.
+  This getRandomQuote function accepts an array as argument and generate 
+  a random number from 0 to the last index in that array. 
+  The function returns the array passed as argument with the random number inside the box 
+  notation, indicating which item in the array the function randomly selected.
 ***/
 
 function getRandomQuote(arr) {
@@ -67,17 +66,10 @@ function getRandomQuote(arr) {
   return arr[getRandomNumber];
 };
 
+
 /***
-  Create the `printQuote` function to: 
-   - Call the `getRandomQuote` function and assign it to a variable.
-   - Create a variable for the HTML string and set it equal to an empty string.
-   - Use the HTML template in the instructions or the markup in the index.html file, AND 
-     the random quote vairable to build your HTML string.
-   - Add the quote and source section to the HTML string.
-   - Use an if statement to check for the citation property before adding it to the HTML string.
-   - Use an if statement to check for the year property before adding it to the HTML string.
-   - Don't forget to close that final `p` tag.
-   - Set the `innerHTML` of the `quote-box` div to the HTML string. 
+This function generates a random RGB color. 
+Every time this function is called a new random color is generated and assigned to the body background.
 ***/
 
 function getRandomColor() {
@@ -87,6 +79,16 @@ function getRandomColor() {
   let rgb = 'rgb(' + r + ',' + g + ',' + b + ')';
   document.body.style.background = rgb;
 };
+
+
+/***
+This printQuote function generates a string of HTML with the properties 
+of the item selected by the getRandomQuote function. 
+This function assigns the quote, source and other properties of the selected item to a string of HTML 
+and place each property inside its respective classes.
+When printQuote is called, it changes the current quote being displayed to a new one and it also 
+invokes the getRandomColor function making the background changes every time the quote changes.
+***/
 
 function printQuote() {
   let quote = getRandomQuote(quotes);
@@ -107,6 +109,7 @@ function printQuote() {
   getRandomColor();
 };
 
+
 /***
   When the "Show another quote" button is clicked, the event listener 
   below will be triggered, and it will call, or "invoke", the `printQuote` 
@@ -115,6 +118,10 @@ function printQuote() {
 ***/
 
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-window.setInterval(printQuote, 6000);
 
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
+
+/***
+This method auto refresh the quote. After 6 seconds the method will call 
+printQuote function again and display a new quote automatically.
+***/
+window.setInterval(printQuote, 6000);
