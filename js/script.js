@@ -20,33 +20,39 @@ let quotes = [
     quote:'The most valuable businesses of coming decades will be built by entrepreneurs who seek to empower people rather than try to make them obsolete.',
     source:'Peter Thiel',
     citation:'Zero to One',
-    year: 2014
+    year: 2014,
+    category: 'Business'
   },
   {
     quote:'Nothing in life should be feared, but instead understood. We should seek to understand more and more so that we can fear less and less.',
     source:'Marie Curie',
     citation:'Our Precarious Habitat',
-    year: 1973
+    year: 1973,
+    category: 'Motivational'
   },
   {
     quote:'The value of things is not the time they last, but the intensity with which they occur. That is why there are unforgettable moments and unique people!',
-    source:'Fernando Pessoa'
+    source:'Fernando Pessoa',
+    category: 'Inspirational'
   },
   {
     quote:'An artist is someone who uses bravery, insight, creativity, and boldness to challenge the status quo. And an artist takes it personally.',
     source:'Seth Godin',
     citation:'Are Your Indispensable?',
-    year:2010
+    year:2010,
+    category: 'Creativity'
   },
   {
     quote:'The greatest thing is when you do put your heart and soul into something over an extended period of time, and it is worth it.',
-    source:'Steve Jobs'
+    source:'Steve Jobs',
+    category:'Motivational'
   },
   {
     quote:'Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.',
     source:'Albert Einstein',
     citation:'The Saturday Evening Post',
-    year:1929
+    year:1929,
+    category:'Creativity'
   }
 ];
 
@@ -74,6 +80,14 @@ function getRandomQuote(arr) {
    - Set the `innerHTML` of the `quote-box` div to the HTML string. 
 ***/
 
+function getRandomColor() {
+  let r = Math.floor(Math.random() * 256);
+  let g = Math.floor(Math.random() * 256);
+  let b = Math.floor(Math.random() * 256);
+  let rgb = 'rgb(' + r + ',' + g + ',' + b + ')';
+  document.body.style.background = rgb;
+};
+
 function printQuote() {
   let quote = getRandomQuote(quotes);
   let message = '';
@@ -85,8 +99,12 @@ function printQuote() {
   if(quote.year) {
     message += '<span class="year">' + quote.year + '</span>';
   }
+  if(quote.category) {
+    message += '<span class="category">' + quote.category + '</span>';
+  }
   message += '</p>';
   document.getElementById("quote-box").innerHTML = message;
+  getRandomColor();
 };
 
 /***
@@ -97,5 +115,6 @@ function printQuote() {
 ***/
 
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+window.setInterval(printQuote, 6000);
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
