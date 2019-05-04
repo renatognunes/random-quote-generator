@@ -30,9 +30,7 @@ let quotes = [
   },
   {
     quote:'The value of things is not the time they last, but the intensity with which they occur. That is why there are unforgettable moments and unique people!',
-    source:'Fernando Pessoa',
-    citation:'',
-    year:'',
+    source:'Fernando Pessoa'
   },
   {
     quote:'An artist is someone who uses bravery, insight, creativity, and boldness to challenge the status quo. And an artist takes it personally.',
@@ -42,12 +40,9 @@ let quotes = [
   },
   {
     quote:'The greatest thing is when you do put your heart and soul into something over an extended period of time, and it is worth it.',
-    source:'Steve Jobs',
-    citation:'',
-    year:'',
+    source:'Steve Jobs'
   }
 ];
-
 
 
 /***
@@ -57,7 +52,8 @@ let quotes = [
 ***/
 
 function getRandomQuote(arr) {
-
+  let getRandomNumber = Math.floor(Math.random() * quotes.length);
+  return arr[getRandomNumber];
 };
 
 /***
