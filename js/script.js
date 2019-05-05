@@ -3,8 +3,6 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-// Study guide for this project - https://drive.google.com/file/d/1s5grutGuQFwJcQP8bFwEI69Q8FCkGdDk/view?usp=sharing
-
 
 
 /*** 
@@ -55,6 +53,14 @@ let quotes = [
 
 
 /***
+This method auto refresh the quote. After 6 seconds the method will call 
+printQuote function again and display a new quote automatically.
+***/
+
+let intervalId = window.setInterval(printQuote, 6000);
+
+
+/***
   This getRandomQuote function accepts an array as argument and generate 
   a random number from 0 to the last index in that array. 
   The function returns the array passed as argument with the random number inside the box 
@@ -88,6 +94,8 @@ This function assigns the quote, source and other properties of the selected ite
 and place each property inside its respective classes.
 When printQuote is called, it changes the current quote being displayed to a new one and it also 
 invokes the getRandomColor function making the background changes every time the quote changes.
+At the bottom of the function there is have a method to stop and restart the 'auto-refresh quote' for 
+every time the button is clicked.
 ***/
 
 function printQuote() {
@@ -107,6 +115,9 @@ function printQuote() {
   message += '</p>';
   document.getElementById("quote-box").innerHTML = message;
   getRandomColor();
+
+  window.clearInterval(intervalId);
+  intervalId = window.setInterval(printQuote, 6000);
 };
 
 
@@ -118,10 +129,3 @@ function printQuote() {
 ***/
 
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-
-
-/***
-This method auto refresh the quote. After 6 seconds the method will call 
-printQuote function again and display a new quote automatically.
-***/
-window.setInterval(printQuote, 6000);
